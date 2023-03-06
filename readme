@@ -1,0 +1,5 @@
+Radiative Transport Equation solver in Nek5000
+
+1. solid angle discretization
+2. boundary condition setup for radiative flux
+3. RTE solver(not ready, need DG solver ready)
