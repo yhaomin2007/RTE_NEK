@@ -86,6 +86,8 @@ c if angle more than 90 degree, then this face should be f for this angle
 
       do ie = 1,nelt
       do iface = 1,2*ldim
+        if ((cbc(iface,ie,1).ne.'   ')
+     & .or.(cbc(iface,ie,1).ne.'E  ')) then
         call facind(i0,i1,j0,j1,k0,k1,nx1,ny1,nz1,iface)
         do k=k0,k1
         do j=j0,j1
@@ -100,14 +102,17 @@ c if angle more than 90 degree, then this face should be f for this angle
         enddo
         enddo
         enddo
-
+        endif
       enddo
       enddo
 
 
       do ie = 1,nelt
       do iface = 1,2*ldim
-      
+
+        if ((cbc(iface,ie,1).ne.'   ')
+     & .or.(cbc(iface,ie,1).ne.'E  ')) then
+
         call surface_int(sint2,sarea2,snfnx,ie,iface)  
         sn2(1) = sint2/sarea2
         call surface_int(sint2,sarea2,snfny,ie,iface)  
@@ -155,9 +160,88 @@ c if angle more than 90 degree, then this face should be f for this angle
 
         endif
       
+        endif
+      
       enddo      
       enddo
 
       end
 c--------------------------------------------------------------------
+      subroutine incident_flux_on_bc()
+c
+c sum up all incident fglux on surface...
+c
+c      implicit none
+      include 'SIZE'
+      include 'TOTAL'
+      include "RTE_DATA"
 
+
+      ntot = lx1*ly1*lz1*nelt
+
+      call rzero(Ir_ibc,ntot)
+
+      do ie = 1,nelt
+      do iface = 1,2*ldim
+
+        if ((cbc(iface,ie,1).ne.'   ')
+     & .or.(cbc(iface,ie,1).ne.'E  ')) then
+
+        call facind(i0,i1,j0,j1,k0,k1,nx1,ny1,nz1,iface)
+        do k=k0,k1
+        do j=j0,j1
+        do i=i0,i1
+
+        if (ldim.eq.2) then
+
+          do iphi = 1,nphi*4          
+          ipscalar = 1+iphi
+          if (cbc(iface,ie,ipscalar+1).eq.'f  ') then
+          Ir_ibc(i,j,k,ie) = Ir_ibc(i,j,k,ie) + t(i,j,k,ie,ipscalar)
+          endif
+          enddo
+      
+        else
+
+          do ithete = 1,ntheta
+          do iphi = 1,nphi*4
+          ipscalar = 1+iphi+(ithete-1)*(nphi*4)
+
+          if (cbc(iface,ie,ipscalar+1).eq.'f  ') then
+          Ir_ibc(i,j,k,ie) = Ir_ibc(i,j,k,ie) + t(i,j,k,ie,ipscalar)
+          endif
+
+          enddo
+          enddo
+
+        endif
+
+        enddo
+        enddo
+        enddo
+
+        endif
+      
+      enddo      
+      enddo
+
+      
+      end
+c--------------------------------------------------------------------
+c--------------------------------------------------------------------
+      subroutine RTE_bc(ix,iy,iz,iside,ie,temp)
+c      implicit none
+      include 'SIZE'
+      include 'TOTAL'
+      include "RTE_DATA"
+      
+      integer ix,iy,iz,iside,ie
+
+
+      t_loc = t(ix,iy,iz,ie,1)
+
+      temp =  emmissivity*sigma*t_loc**4.0/sn_pi + Ir_ibc(ix,iy,iz,ie)
+
+      
+      end
+c--------------------------------------------------------------------

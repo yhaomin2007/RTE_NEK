@@ -12,7 +12,8 @@
      & sn_y(4*nphi_max,ntheta_max),
      & sn_z(4*nphi_max,ntheta_max),
      & Ir(lx1,ly1,lz1,lelt,4*nphi_max,ntheta_max), 
-     & Qr(lx1,ly1,lz1,lelt),     
+     & Qr(lx1,ly1,lz1,lelt),
+     & Ir_ibc(lx1,ly1,lz1,lelt),
      & snfnx(lx1,ly1,lz1,lelt),      
      & snfny(lx1,ly1,lz1,lelt),     
      & snfnz(lx1,ly1,lz1,lelt),
@@ -21,5 +22,5 @@
       common /RTE_data/ nphi,ntheta,
      & sa_phi,sa_theta,sa_w,sn_pi,
      & sn_x,sn_y,sn_z,
-     & Ir,Qr,snfnx,snfny,snfnz,
+     & Ir,Ir_ibc,Qr,snfnx,snfny,snfnz,
      & emissivity
