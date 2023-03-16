@@ -11,6 +11,7 @@ c      implicit none
       ntheta = 4
 
       sn_pi = 3.1415926
+      sigma = 5.67E-8   ! Boltzmann constant
    
       dphi = 0.5*sn_pi/dble(nphi)
       dtheta = sn_pi/dble(ntheta)
@@ -59,6 +60,7 @@ c      implicit none
 
       endif
  
+      return
       end
 c--------------------------------------------------------------------
       subroutine RTE_bc_setup()
@@ -165,6 +167,7 @@ c if angle more than 90 degree, then this face should be f for this angle
       enddo      
       enddo
 
+      return
       end
 c--------------------------------------------------------------------
       subroutine incident_flux_on_bc()
@@ -242,6 +245,59 @@ c      implicit none
 
       temp =  emmissivity*sigma*t_loc**4.0/sn_pi + Ir_ibc(ix,iy,iz,ie)
 
+      return
+      end
+c--------------------------------------------------------------------
+      subroutine RTE_source_term()
+c
+c      implicit none
+      include 'SIZE'
+      include 'TOTAL'
+      include "RTE_DATA"
+
+      real dtdx(lx1,ly1,lz1,lelt)
+      real dtdy(lx1,ly1,lz1,lelt)
+      real dtdz(lx1,ly1,lz1,lelt)
+
+      integer ipscalar
+
+      ntot = lx1*ly1*lz1*nelt
+
+c Ir_src = sn  dot grad ir
+
+       if (ldim.eq.2) then
+
+          do iphi = 1,nphi*4          
+             ipscalar = 1+iphi
+           call gradm1(t(1,1,1,1,ipscalar),dtdx,dtdy,dtdz)
+           do i = 1,ntot
+           Ir_src(i,1,1,1,iphi,1) = sn_x(iphi,1)*dtdx(i,1,1,1)
+    & + sn_y(iphi,1)*dtdy(i,1,1,1) + sigma_t*t(i,1,1,1,ipscalar)
+
+           enddo         
+          enddo
       
+        else
+
+          do ithete = 1,ntheta
+          do iphi = 1,nphi*4
+          ipscalar = 1+iphi+(ithete-1)*(nphi*4)
+
+           call gradm1(t(1,1,1,1,ipscalar),dtdx,dtdy,dtdz)
+
+           do i = 1,ntot
+           Ir_src(i,1,1,1,iphi,ithete) = sn_x(iphi,ithete)*dtdx(i,1,1,1)
+    & + sn_y(iphi,ithete)*dtdy(i,1,1,1) +  sn_z(iphi,ithete)*dtdz(i,1,1,1)
+    & + sigma_t*t(i,1,1,1,ipscalar)
+
+           enddo         
+
+          enddo
+          enddo
+
+        endif
+
+
+      return
       end
 c--------------------------------------------------------------------
