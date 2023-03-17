@@ -1,27 +1,25 @@
-      parameter(nphi_max = 4)
-      parameter(ntheta_max = 10)     
-      
-      integer nphi,ntheta
+      parameter(nphi = 2)
+      parameter(ntheta = 4)     
 
-      real sa_phi(4*nphi_max)
-      real sa_theta(ntheta_max)
-      real sa_w(4*nphi_max,ntheta_max)
+      real sa_phi(4*nphi)
+      real sa_theta(ntheta)
+      real sa_w(4*nphi,ntheta)
       real sn_pi
     
-      real sn_x(4*nphi_max,ntheta_max),
-     & sn_y(4*nphi_max,ntheta_max),
-     & sn_z(4*nphi_max,ntheta_max),
-     & Ir(lx1,ly1,lz1,lelt,4*nphi_max,ntheta_max), 
-     & Ir_src(lx1,ly1,lz1,lelt,4*nphi_max,ntheta_max), 
+      real sn_x(4*nphi,ntheta),
+     & sn_y(4*nphi,ntheta),
+     & sn_z(4*nphi,ntheta),
+     & Ir(lx1,ly1,lz1,lelt,4*nphi,ntheta), 
+     & Ir_src(lx1,ly1,lz1,lelt,4*nphi,ntheta), 
      & Ir_ibc(lx1,ly1,lz1,lelt),
      & Qr(lx1,ly1,lz1,lelt),
      & snfnx(lx1,ly1,lz1,lelt),      
      & snfny(lx1,ly1,lz1,lelt),     
      & snfnz(lx1,ly1,lz1,lelt),
-     & emissivity,sigma,sigma_t
+     & efn(3,2*ldim,lelt),
+     & emissivity,sigma_b,sigma_t
        
-      common /RTE_data/ nphi,ntheta,
-     & sa_phi,sa_theta,sa_w,sn_pi,
+      common /RTE_data/ sa_phi,sa_theta,sa_w,sn_pi,
      & sn_x,sn_y,sn_z,
-     & Ir,Ir_src,Ir_ibc,Qr,snfnx,snfny,snfnz,
-     & emissivity,sigma,sigma_t
+     & Ir,Ir_src,Ir_ibc,Qr,snfnx,snfny,snfnz,efn,
+     & emissivity,sigma_b,sigma_t

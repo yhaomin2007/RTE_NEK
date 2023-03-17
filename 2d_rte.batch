@@ -1,0 +1,13 @@
+#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=4
+#SBATCH --time=0:10:00
+#SBATCH --output=logfile
+#SBATCH -p compute
+echo 2d_rte > SESSION.NAME
+echo `pwd`'/' >> SESSION.NAME
+rm -f *.sch
+rm -f ioinfo
+which mpif77 >> logfile
+mpirun ./nek5000
+exit 0;

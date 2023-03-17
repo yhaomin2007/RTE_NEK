@@ -1,5 +1,5 @@
 c--------------------------------------------------------------------
-      subroutine solid_angle_discretization()
+      subroutine RTE_solid_angle_discretization()
 c      implicit none
       include 'SIZE'
       include 'TOTAL'
@@ -7,15 +7,17 @@ c      implicit none
 
       ntot = lx1*ly1*lz1*nelt
 
-      nphi = 2
-      ntheta = 4
+      ! nphi = 2     ! change in RTE_DATA
+      ! ntheta = 4   ! change in RTE_DATA
+
+      emissivity = 0.5
+      sigma_t= 1.0
 
       sn_pi = 3.1415926
-      sigma = 5.67E-8   ! Boltzmann constant
+      sigma_b = 5.67E-8   ! Boltzmann constant
    
       dphi = 0.5*sn_pi/dble(nphi)
       dtheta = sn_pi/dble(ntheta)
-
 
       do iphi = 1,nphi*4
       sa_phi(iphi) = 0.5*dphi + dphi*dble(iphi-1)
@@ -29,8 +31,8 @@ c      implicit none
       if (ldim.eq.2) then  ! 2d
       
       do iphi = 1,nphi*4
-      sn_x(itheta,iphi)= 2*sin(sa_phi(iphi))*sin(0.5*dphi)
-      sn_y(itheta,iphi)= 2*cos(sa_phi(iphi))*sin(0.5*dphi)
+      sn_x(iphi,itheta)= 2*sin(sa_phi(iphi))*sin(0.5*dphi)
+      sn_y(iphi,itheta)= 2*cos(sa_phi(iphi))*sin(0.5*dphi)
       sa_w(iphi,1) = dphi/(2.0*sn_pi)
       enddo
 
@@ -38,13 +40,13 @@ c      implicit none
 
       sa_tot = 0.0
     
-      do ithete = 1,ntheta
+      do itheta = 1,ntheta
       do iphi = 1,nphi*4
-      sn_x(itheta,iphi)=sin(sa_phi(iphi))*sin(0.5*dphi)*
+      sn_x(iphi,itheta)=sin(sa_phi(iphi))*sin(0.5*dphi)*
      & (dtheta-cos(2*sa_theta(itheta))*sin(dtheta))
-      sn_y(itheta,iphi)=cos(sa_phi(iphi))*sin(0.5*dphi)*
+      sn_y(iphi,itheta)=cos(sa_phi(iphi))*sin(0.5*dphi)*
      & (dtheta-cos(2*sa_theta(itheta))*sin(dtheta))
-      sn_z(itheta,iphi)=0.5*dphi*sin(2*sa_theta(itheta))*sin(dtheta)     
+      sn_z(iphi,itheta)=0.5*dphi*sin(2*sa_theta(itheta))*sin(dtheta)     
       
       sa_w(iphi,itheta) = sin(sa_theta(itheta))*dtheta*dphi
       sa_tot = sa_tot + sa_w(iphi,itheta)
@@ -52,7 +54,7 @@ c      implicit none
       enddo
 
       ! solid angle weight
-      do ithete = 1,ntheta
+      do itheta = 1,ntheta
       do iphi = 1,nphi*4
       sa_w(iphi,itheta)  =  sa_w(iphi,itheta)/sa_tot
       enddo
@@ -89,7 +91,9 @@ c if angle more than 90 degree, then this face should be f for this angle
       do ie = 1,nelt
       do iface = 1,2*ldim
         if ((cbc(iface,ie,1).ne.'   ')
-     & .or.(cbc(iface,ie,1).ne.'E  ')) then
+     & .or.(cbc(iface,ie,1).ne.'E  ')
+     & .or.(cbc(iface,ie,1).ne.'P  ')) then
+
         call facind(i0,i1,j0,j1,k0,k1,nx1,ny1,nz1,iface)
         do k=k0,k1
         do j=j0,j1
@@ -113,14 +117,19 @@ c if angle more than 90 degree, then this face should be f for this angle
       do iface = 1,2*ldim
 
         if ((cbc(iface,ie,1).ne.'   ')
-     & .or.(cbc(iface,ie,1).ne.'E  ')) then
+     & .or.(cbc(iface,ie,1).ne.'E  ')
+     & .or.(cbc(iface,ie,1).ne.'P  ')) then
 
         call surface_int(sint2,sarea2,snfnx,ie,iface)  
-        sn2(1) = sint2/sarea2
+        sn2(1) = - sint2/sarea2
         call surface_int(sint2,sarea2,snfny,ie,iface)  
-        sn2(2) = sint2/sarea2
+        sn2(2) = - sint2/sarea2
         call surface_int(sint2,sarea2,snfnz,ie,iface)  
-        sn2(3) = sint2/sarea2
+        sn2(3) = - sint2/sarea2
+
+        efn(1,iface,ie) =   sn2(1)   ! element face normal, point to inside
+        efn(2,iface,ie) =   sn2(2) 
+        efn(3,iface,ie) =   sn2(3) 
 
         if (ldim.eq.2) then
 
@@ -141,9 +150,9 @@ c if angle more than 90 degree, then this face should be f for this angle
       
         else
 
-          do ithete = 1,ntheta
+          do itheta = 1,ntheta
           do iphi = 1,nphi*4
-          ipscalar = 1+iphi+(ithete-1)*(nphi*4)
+          ipscalar = 1+iphi+(itheta-1)*(nphi*4)
 
           sn3(1) = cos(sa_phi(iphi))*sin(sa_theta(itheta))
           sn3(2) = sin(sa_phi(iphi))*sin(sa_theta(itheta))
@@ -170,7 +179,7 @@ c if angle more than 90 degree, then this face should be f for this angle
       return
       end
 c--------------------------------------------------------------------
-      subroutine incident_flux_on_bc()
+      subroutine RTE_incident_radiation_flux_on_bc()
 c
 c sum up all incident fglux on surface...
 c
@@ -188,7 +197,9 @@ c      implicit none
       do iface = 1,2*ldim
 
         if ((cbc(iface,ie,1).ne.'   ')
-     & .or.(cbc(iface,ie,1).ne.'E  ')) then
+     & .or.(cbc(iface,ie,1).ne.'E  ')
+     & .or.(cbc(iface,ie,1).ne.'P  ')) then
+
 
         call facind(i0,i1,j0,j1,k0,k1,nx1,ny1,nz1,iface)
         do k=k0,k1
@@ -200,18 +211,27 @@ c      implicit none
           do iphi = 1,nphi*4          
           ipscalar = 1+iphi
           if (cbc(iface,ie,ipscalar+1).eq.'f  ') then
-          Ir_ibc(i,j,k,ie) = Ir_ibc(i,j,k,ie) + t(i,j,k,ie,ipscalar)
+       Ir_ibc(i,j,k,ie) = Ir_ibc(i,j,k,ie)
+     & + t(i,j,k,ie,ipscalar)
+     & *(sn_x(iphi,1)*efn(1,ifc,ie)
+     & +sn_y(iphi,1)*efn(2,ifc,ie))
+
           endif
           enddo
       
         else
 
-          do ithete = 1,ntheta
+          do itheta = 1,ntheta
           do iphi = 1,nphi*4
-          ipscalar = 1+iphi+(ithete-1)*(nphi*4)
+          ipscalar = 1+iphi+(itheta-1)*(nphi*4)
 
-          if (cbc(iface,ie,ipscalar+1).eq.'f  ') then
-          Ir_ibc(i,j,k,ie) = Ir_ibc(i,j,k,ie) + t(i,j,k,ie,ipscalar)
+         if (cbc(iface,ie,ipscalar+1).eq.'f  ') then
+      Ir_ibc(i,j,k,ie) = Ir_ibc(i,j,k,ie)
+     & + t(i,j,k,ie,ipscalar)
+     & *(sn_x(iphi,itheta)*efn(1,ifc,ie)
+     & +sn_y(iphi,itheta)*efn(2,ifc,ie)
+     & +sn_z(iphi,itheta)*efn(3,ifc,ie))
+
           endif
 
           enddo
@@ -240,10 +260,10 @@ c      implicit none
       
       integer ix,iy,iz,iside,ie
 
-
       t_loc = t(ix,iy,iz,ie,1)
 
-      temp =  emmissivity*sigma*t_loc**4.0/sn_pi + Ir_ibc(ix,iy,iz,ie)
+      temp =  (emissivity*sigma_b*t_loc**4.0 
+     & + (1.0-emissivity)*Ir_ibc(ix,iy,iz,ie))/sn_pi
 
       return
       end
@@ -268,27 +288,32 @@ c Ir_src = sn  dot grad ir
        if (ldim.eq.2) then
 
           do iphi = 1,nphi*4          
-             ipscalar = 1+iphi
+           ipscalar = 1+iphi
            call gradm1(t(1,1,1,1,ipscalar),dtdx,dtdy,dtdz)
            do i = 1,ntot
-           Ir_src(i,1,1,1,iphi,1) = sn_x(iphi,1)*dtdx(i,1,1,1)
-    & + sn_y(iphi,1)*dtdy(i,1,1,1) + sigma_t*t(i,1,1,1,ipscalar)
-
+      Ir_src(i,1,1,1,iphi,1) =
+     & - sn_x(iphi,1)*dtdx(i,1,1,1)
+     & - sn_y(iphi,1)*dtdy(i,1,1,1) 
+     & - sigma_t*t(i,1,1,1,ipscalar)
+     & + sigma_t*sigma_b*t(i,1,1,1,1)**4.0/sn_pi
            enddo         
           enddo
-      
+
         else
 
-          do ithete = 1,ntheta
+          do itheta = 1,ntheta
           do iphi = 1,nphi*4
-          ipscalar = 1+iphi+(ithete-1)*(nphi*4)
+          ipscalar = 1+iphi+(itheta-1)*(nphi*4)
 
            call gradm1(t(1,1,1,1,ipscalar),dtdx,dtdy,dtdz)
 
            do i = 1,ntot
-           Ir_src(i,1,1,1,iphi,ithete) = sn_x(iphi,ithete)*dtdx(i,1,1,1)
-    & + sn_y(iphi,ithete)*dtdy(i,1,1,1) +  sn_z(iphi,ithete)*dtdz(i,1,1,1)
-    & + sigma_t*t(i,1,1,1,ipscalar)
+      Ir_src(i,1,1,1,iphi,itheta) = 
+     & - sn_x(iphi,itheta)*dtdx(i,1,1,1)
+     & - sn_y(iphi,itheta)*dtdy(i,1,1,1) 
+     & - sn_z(iphi,itheta)*dtdz(i,1,1,1)
+     & - sigma_t*t(i,1,1,1,ipscalar)
+     & + sigma_t*sigma_b*t(i,1,1,1,1)**4.0/sn_pi
 
            enddo         
 

@@ -1,0 +1,256 @@
+mpif77 -O0 -w -std=legacy  -c dlabad.f 
+mpif77 -O0 -w -std=legacy  -c ilaenv.f 
+mpif77 -O0 -w -std=legacy  -c zlatrs.f 
+mpif77 -O0 -w -std=legacy  -c ztrsv.f 
+mpif77 -O0 -w -std=legacy  -c dsyev.f 
+mpif77 -O0 -w -std=legacy  -c dnrm2.f 
+mpif77 -O0 -w -std=legacy  -c dscal.f 
+mpif77 -O0 -w -std=legacy  -c dlartg.f 
+mpif77 -O0 -w -std=legacy  -c dbdsqr.f 
+mpif77 -O0 -w -std=legacy  -c dlasv2.f 
+mpif77 -O0 -w -std=legacy  -c dlatrs.f 
+mpif77 -O0 -w -std=legacy  -c dgelss.f 
+mpif77 -O0 -w -std=legacy  -c dlanv2.f 
+mpif77 -O0 -w -std=legacy  -c dlarfb.f 
+mpif77 -O0 -w -std=legacy  -c dorgbr.f 
+mpif77 -O0 -w -std=legacy  -c dorgqr.f 
+mpif77 -O0 -w -std=legacy  -c dorgl2.f 
+mpif77 -O0 -w -std=legacy  -c dzsum1.f 
+mpif77 -O0 -w -std=legacy  -c zgeru.f 
+mpif77 -O0 -w -std=legacy  -c dgebal.f 
+mpif77 -O0 -w -std=legacy  -c zgecon.f 
+mpif77 -O0 -w -std=legacy  -c dsygv.f 
+mpif77 -O0 -w -std=legacy  -c dlarf.f 
+mpif77 -O0 -w -std=legacy  -c dsteqr.f 
+mpif77 -O0 -w -std=legacy  -c dorghr.f 
+mpif77 -O0 -w -std=legacy  -c dormqr.f 
+mpif77 -O0 -w -std=legacy  -c dorg2l.f 
+mpif77 -O0 -w -std=legacy  -c dlanst.f 
+mpif77 -O0 -w -std=legacy  -c dladiv.f 
+mpif77 -O0 -w -std=legacy  -c zscal.f 
+mpif77 -O0 -w -std=legacy  -c dtrmv.f 
+mpif77 -O0 -w -std=legacy  -c dorml2.f 
+mpif77 -O0 -w -std=legacy  -c dlasq3.f 
+mpif77 -O0 -w -std=legacy  -c dsytd2.f 
+mpif77 -O0 -w -std=legacy  -c zlaswp.f 
+mpif77 -O0 -w -std=legacy  -c dlansy.f 
+mpif77 -O0 -w -std=legacy  -c ddot.f 
+mpif77 -O0 -w -std=legacy  -c dlarfx.f 
+mpif77 -O0 -w -std=legacy  -c dlacpy.f 
+mpif77 -O0 -w -std=legacy  -c dlamch.f 
+mpif77 -O0 -w -std=legacy  -c zaxpy.f 
+mpif77 -O0 -w -std=legacy  -c dlarft.f 
+mpif77 -O0 -w -std=legacy  -c dpbtrs.f 
+mpif77 -O0 -w -std=legacy  -c dgebak.f 
+mpif77 -O0 -w -std=legacy  -c dgeqr2.f 
+mpif77 -O0 -w -std=legacy  -c dlaev2.f 
+mpif77 -O0 -w -std=legacy  -c xerbla.f 
+mpif77 -O0 -w -std=legacy  -c zdscal.f 
+mpif77 -O0 -w -std=legacy  -c idamax.f 
+mpif77 -O0 -w -std=legacy  -c dasum.f 
+mpif77 -O0 -w -std=legacy  -c dlabrd.f 
+mpif77 -O0 -w -std=legacy  -c dhseqr.f 
+mpif77 -O0 -w -std=legacy  -c dsymv.f 
+mpif77 -O0 -w -std=legacy  -c dger.f 
+mpif77 -O0 -w -std=legacy  -c dgesvd.f 
+mpif77 -O0 -w -std=legacy  -c dtrmm.f 
+mpif77 -O0 -w -std=legacy  -c zgetf2.f 
+mpif77 -O0 -w -std=legacy  -c dgebd2.f 
+mpif77 -O0 -w -std=legacy  -c dlassq.f 
+mpif77 -O0 -w -std=legacy  -c dorg2r.f 
+mpif77 -O0 -w -std=legacy  -c dpbtf2.f 
+mpif77 -O0 -w -std=legacy  -c dlaln2.f 
+mpif77 -O0 -w -std=legacy  -c dlapy2.f 
+mpif77 -O0 -w -std=legacy  -c dgebrd.f 
+mpif77 -O0 -w -std=legacy  -c dlanhs.f 
+mpif77 -O0 -w -std=legacy  -c dorm2r.f 
+mpif77 -O0 -w -std=legacy  -c dlascl.f 
+mpif77 -O0 -w -std=legacy  -c dstev.f 
+mpif77 -O0 -w -std=legacy  -c dzasum.f 
+mpif77 -O0 -w -std=legacy  -c dtrevc.f 
+mpif77 -O0 -w -std=legacy  -c dsytrd.f 
+mpif77 -O0 -w -std=legacy  -c dgetri.f 
+mpif77 -O0 -w -std=legacy  -c dtrsv.f 
+mpif77 -O0 -w -std=legacy  -c dsygst.f 
+mpif77 -O0 -w -std=legacy  -c zdotc.f 
+mpif77 -O0 -w -std=legacy  -c dlasq6.f 
+mpif77 -O0 -w -std=legacy  -c dgelqf.f 
+mpif77 -O0 -w -std=legacy  -c dsyrk.f 
+mpif77 -O0 -w -std=legacy  -c dgetrf.f 
+mpif77 -O0 -w -std=legacy  -c dtrtri.f 
+mpif77 -O0 -w -std=legacy  -c dlasr.f 
+mpif77 -O0 -w -std=legacy  -c dgetrs.f 
+mpif77 -O0 -w -std=legacy  -c dorgtr.f 
+mpif77 -O0 -w -std=legacy  -c zladiv.f 
+mpif77 -O0 -w -std=legacy  -c dsymm.f 
+mpif77 -O0 -w -std=legacy  -c dsyrfs.f 
+mpif77 -O0 -w -std=legacy  -c dormbr.f 
+mpif77 -O0 -w -std=legacy  -c dgetf2.f 
+mpif77 -O0 -w -std=legacy  -c dcabs1.f 
+mpif77 -O0 -w -std=legacy  -c dgehd2.f 
+mpif77 -O0 -w -std=legacy  -c dswap.f 
+mpif77 -O0 -w -std=legacy  -c dgeqrf.f 
+mpif77 -O0 -w -std=legacy  -c dpotf2.f 
+mpif77 -O0 -w -std=legacy  -c dorglq.f 
+mpif77 -O0 -w -std=legacy  -c daxpy.f 
+mpif77 -O0 -w -std=legacy  -c dlasq5.f 
+mpif77 -O0 -w -std=legacy  -c dsyr2.f 
+mpif77 -O0 -w -std=legacy  -c dsterf.f 
+mpif77 -O0 -w -std=legacy  -c dgemm.f 
+mpif77 -O0 -w -std=legacy  -c dlahqr.f 
+mpif77 -O0 -w -std=legacy  -c dlarfg.f 
+mpif77 -O0 -w -std=legacy  -c dlatrd.f 
+mpif77 -O0 -w -std=legacy  -c dlaswp.f 
+mpif77 -O0 -w -std=legacy  -c dlasq4.f 
+mpif77 -O0 -w -std=legacy  -c dlange.f 
+mpif77 -O0 -w -std=legacy  -c dtrti2.f 
+mpif77 -O0 -w -std=legacy  -c zgemm.f 
+mpif77 -O0 -w -std=legacy  -c izamax.f 
+mpif77 -O0 -w -std=legacy  -c dsyr2k.f 
+mpif77 -O0 -w -std=legacy  -c izmax1.f 
+mpif77 -O0 -w -std=legacy  -c zcopy.f 
+mpif77 -O0 -w -std=legacy  -c dgesv.f 
+mpif77 -O0 -w -std=legacy  -c dtrsm.f 
+mpif77 -O0 -w -std=legacy  -c dgeev.f 
+mpif77 -O0 -w -std=legacy  -c dlasrt.f 
+mpif77 -O0 -w -std=legacy  -c dgemv.f 
+mpif77 -O0 -w -std=legacy  -c dlasq2.f 
+mpif77 -O0 -w -std=legacy  -c dcopy.f 
+mpif77 -O0 -w -std=legacy  -c drscl.f 
+mpif77 -O0 -w -std=legacy  -c dgecon.f 
+mpif77 -O0 -w -std=legacy  -c drot.f 
+mpif77 -O0 -w -std=legacy  -c dpotrs.f 
+mpif77 -O0 -w -std=legacy  -c ztrsm.f 
+mpif77 -O0 -w -std=legacy  -c dgelq2.f 
+mpif77 -O0 -w -std=legacy  -c dlas2.f 
+mpif77 -O0 -w -std=legacy  -c zswap.f 
+mpif77 -O0 -w -std=legacy  -c dlasq1.f 
+mpif77 -O0 -w -std=legacy  -c dlacon.f 
+mpif77 -O0 -w -std=legacy  -c zdrscl.f 
+mpif77 -O0 -w -std=legacy  -c dpotrf.f 
+mpif77 -O0 -w -std=legacy  -c zlacon.f 
+mpif77 -O0 -w -std=legacy  -c dgehrd.f 
+mpif77 -O0 -w -std=legacy  -c zgetrf.f 
+mpif77 -O0 -w -std=legacy  -c dposv.f 
+mpif77 -O0 -w -std=legacy  -c lsame.f 
+mpif77 -O0 -w -std=legacy  -c dsyr.f 
+mpif77 -O0 -w -std=legacy  -c dlahrd.f 
+mpif77 -O0 -w -std=legacy  -c dsygs2.f 
+mpif77 -O0 -w -std=legacy  -c dormlq.f 
+mpif77 -O0 -w -std=legacy  -c zdotu.f 
+mpif77 -O0 -w -std=legacy  -c dlaset.f 
+mpif77 -O0 -w -std=legacy  -c dpbtrf.f 
+mpif77 -O0 -w -std=legacy  -c dorgql.f 
+mpif77 -O0 -w -std=legacy  -c dlae2.f 
+mpif77 -O0 -w -std=legacy  -c dtbsv.f 
+mpif77 -O0 -w -std=legacy  -c ieeeck.f 
+ar -cr libblasLapack.a *.o
++ make -j4 DESTDIR=/home/hyuan/Nek5000_03162023/Nek5000/3rd_party/gslib MPI=1 MPIIO=1 ADDUS=1 USREXIT=0 BLAS=2
+mpicc -O2  -I./src  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DPREFIX=gslib_ -DFPREFIX=fgslib_ -c src/gs.c -o src/gs.o
+mpicc -O2  -I./src  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DPREFIX=gslib_ -DFPREFIX=fgslib_ -c src/sort.c -o src/sort.o
+mpicc -O2  -I./src  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DPREFIX=gslib_ -DFPREFIX=fgslib_ -c src/sarray_transfer.c -o src/sarray_transfer.o
+mpicc -O2  -I./src  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DPREFIX=gslib_ -DFPREFIX=fgslib_ -c src/sarray_sort.c -o src/sarray_sort.o
+mpicc -O2  -I./src  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DPREFIX=gslib_ -DFPREFIX=fgslib_ -c src/gs_local.c -o src/gs_local.o
+mpicc -O2  -I./src  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DPREFIX=gslib_ -DFPREFIX=fgslib_ -c src/fail.c -o src/fail.o
+mpicc -O2  -I./src  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DPREFIX=gslib_ -DFPREFIX=fgslib_ -c src/crystal.c -o src/crystal.o
+mpicc -O2  -I./src  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DPREFIX=gslib_ -DFPREFIX=fgslib_ -c src/comm.c -o src/comm.o
+mpicc -O2  -I./src  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DPREFIX=gslib_ -DFPREFIX=fgslib_ -c src/tensor.c -o src/tensor.o
+mpicc -O2  -I./src  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DPREFIX=gslib_ -DFPREFIX=fgslib_ -c src/fcrystal.c -o src/fcrystal.o
+mpicc -O2  -I./src  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DPREFIX=gslib_ -DFPREFIX=fgslib_ -c src/findpts.c -o src/findpts.o
+mpicc -O2  -I./src  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DPREFIX=gslib_ -DFPREFIX=fgslib_ -c src/findpts_local.c -o src/findpts_local.o
+mpicc -O2  -I./src  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DPREFIX=gslib_ -DFPREFIX=fgslib_ -c src/obbox.c -o src/obbox.o
+mpicc -O2  -I./src  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DPREFIX=gslib_ -DFPREFIX=fgslib_ -c src/poly.c -o src/poly.o
+mpicc -O2  -I./src  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DPREFIX=gslib_ -DFPREFIX=fgslib_ -c src/lob_bnd.c -o src/lob_bnd.o
+mpicc -O2  -I./src  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DPREFIX=gslib_ -DFPREFIX=fgslib_ -c src/findpts_el_3.c -o src/findpts_el_3.o
+mpicc -O2  -I./src  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DPREFIX=gslib_ -DFPREFIX=fgslib_ -c src/findpts_el_2.c -o src/findpts_el_2.o
+'./src/libgs.a' -> '/home/hyuan/Nek5000_03162023/Nek5000/3rd_party/gslib/lib/libgs.a'
++ set +x
+
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/drive1.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/drive1.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/drive2.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/drive2.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/plan5.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/plan5.o
+mpicc -c  -O2  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj -I/home/hyuan/Nek5000_03162023/Nek5000/3rd_party/gslib/include /home/hyuan/Nek5000_03162023/Nek5000/core/nekio.c -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/nekio.o
+/home/hyuan/Nek5000_03162023/Nek5000/core/nekio.c: In function 'nek_file_open_':
+/home/hyuan/Nek5000_03162023/Nek5000/core/nekio.c:502:8: warning: comparison between pointer and integer
+   if(c == NULL) c = MPI_COMM_NULL;
+        ^~
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/plan4.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/plan4.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/bdry.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/bdry.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/coef.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/coef.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/conduct.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/conduct.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/connect1.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/connect1.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/connect2.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/connect2.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/dssum.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/dssum.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/eigsolv.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/eigsolv.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/gauss.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/gauss.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/genxyz.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/genxyz.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/navier1.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/navier1.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/makeq.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/makeq.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/navier0.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/navier0.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/navier2.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/navier2.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/navier3.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/navier3.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/navier4.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/navier4.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/prepost.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/prepost.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/speclib.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/speclib.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/map2.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/map2.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/mvmesh.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/mvmesh.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/ic.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/ic.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/gfldr.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/gfldr.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/ssolv.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/ssolv.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/planx.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/planx.o
+mpif77 -c  -O3 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/math.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/math.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/mxm_wrapper.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/mxm_wrapper.o 
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/hmholtz.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/hmholtz.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/subs1.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/subs1.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/subs2.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/subs2.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/gmres.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/gmres.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/hsmg.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/hsmg.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/convect.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/convect.o
+mpif77 -c  -O0 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/convect2.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/convect2.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/induct.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/induct.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/perturb.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/perturb.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/navier5.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/navier5.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/navier6.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/navier6.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/navier7.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/navier7.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/navier8.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/navier8.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/fast3d.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/fast3d.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/fasts.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/fasts.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/calcz.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/calcz.o
+mpicc -c  -O2  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/byte.c -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/byte.o
+mpicc -c  -O2  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/chelpers.c -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/chelpers.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/byte_mpi.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/byte_mpi.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/postpro.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/postpro.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/interp.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/interp.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/cvode_driver.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/cvode_driver.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/multimesh.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/multimesh.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/vprops.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/vprops.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/makeq_aux.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/makeq_aux.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/papi.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/papi.o
+mpif77 -c   -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/3rd_party/nek_in_situ.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/nek_in_situ.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/reader_rea.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/reader_rea.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/reader_par.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/reader_par.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/reader_re2.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/reader_re2.o
+mpicc -c  -O2  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj  /home/hyuan/Nek5000_03162023/Nek5000/core/3rd_party/finiparser.c -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/finiparser.o
+mpicc -c  -O2  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj  /home/hyuan/Nek5000_03162023/Nek5000/core/3rd_party/iniparser.c -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/iniparser.o
+mpicc -c  -O2  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj  /home/hyuan/Nek5000_03162023/Nek5000/core/3rd_party/dictionary.c -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/dictionary.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/hpf.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/hpf.o
+mpicc -c  -O2  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj -I/home/hyuan/Nek5000_03162023/Nek5000/3rd_party/gslib/include  /home/hyuan/Nek5000_03162023/Nek5000/core/fcrs.c -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/fcrs.o
+mpicc -c  -O2  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj -I/home/hyuan/Nek5000_03162023/Nek5000/3rd_party/gslib/include /home/hyuan/Nek5000_03162023/Nek5000/core/crs_xxt.c -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/crs_xxt.o
+mpicc -c  -O2  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj -I/home/hyuan/Nek5000_03162023/Nek5000/3rd_party/gslib/include /home/hyuan/Nek5000_03162023/Nek5000/core/crs_amg.c -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/crs_amg.o
+mpicc -c  -O2  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj -I/home/hyuan/Nek5000_03162023/Nek5000/3rd_party/gslib/include  /home/hyuan/Nek5000_03162023/Nek5000/core/experimental/fem_amg_preco.c -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/fem_amg_preco.o
+mpicc -c  -O2  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj -I/home/hyuan/Nek5000_03162023/Nek5000/3rd_party/gslib/include  /home/hyuan/Nek5000_03162023/Nek5000/core/experimental/crs_hypre.c -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/crs_hypre.o
+mpicc -c  -O2  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj -I/home/hyuan/Nek5000_03162023/Nek5000/3rd_party/gslib/include  /home/hyuan/Nek5000_03162023/Nek5000/core/partitioner.c -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/partitioner.o
+mpif77 -c  -O3 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/mxm_std.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/mxm_std.o
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/comm_mpi.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/comm_mpi.o
+mpif77  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj  -c /home/hyuan/scr_hyuan/RTE/RTE_NEK/2d_rte.f -o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/2d_rte.o
+done
+mpif77 -c  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj /home/hyuan/Nek5000_03162023/Nek5000/core/drive.f
+mpif77  -O2 -cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy  -DMPI -DUNDERSCORE -DGLOBAL_LONG_LONG -DTIMER -I/home/hyuan/scr_hyuan/RTE/RTE_NEK -I/home/hyuan/Nek5000_03162023/Nek5000/core -I./ -I/home/hyuan/Nek5000_03162023/Nek5000/core/experimental -I/home/hyuan/scr_hyuan/RTE/RTE_NEK/obj -o nek5000 drive.o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/2d_rte.o /home/hyuan/scr_hyuan/RTE/RTE_NEK/obj/libnek5000.a -L/home/hyuan/Nek5000_03162023/Nek5000/3rd_party/blasLapack -lblasLapack -L/home/hyuan/Nek5000_03162023/Nek5000/3rd_party/gslib/lib -lgs -Wl,--allow-multiple-definition
+
+
+#############################################################
+#                  Compilation successful!                  #
+#############################################################
+   text	   data	    bss	    dec	    hex	filename
+1668688	  38208	42968672	44675568	2a9b1f0	nek5000
+

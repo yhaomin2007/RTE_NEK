@@ -1,0 +1,238 @@
+      include "rte.f"
+c-----------------------------------------------------------------------
+c  nek5000 user-file template
+c
+c  user specified routines:
+c     - uservp  : variable properties
+c     - userf   : local acceleration term for fluid
+c     - userq   : local source term for scalars
+c     - userbc  : boundary conditions
+c     - useric  : initial conditions
+c     - userchk : general purpose routine for checking errors etc.
+c     - userqtl : thermal divergence for lowMach number flows 
+c     - usrdat  : modify element vertices 
+c     - usrdat2 : modify mesh coordinates
+c     - usrdat3 : general purpose routine for initialization
+c     
+c-----------------------------------------------------------------------
+      subroutine uservp(ix,iy,iz,eg) ! set variable properties
+
+c      implicit none
+
+      integer ix,iy,iz,eg
+     
+      include 'SIZE'
+      include 'TOTAL'
+      include 'NEKUSE'
+
+      integer e
+c     e = gllel(eg)
+
+      utrans  = 1.0
+      udiff   = 1e-3
+
+      return
+      end
+c-----------------------------------------------------------------------
+      subroutine userf(ix,iy,iz,eg) ! set acceleration term
+c
+c     Note: this is an acceleration term, NOT a force!
+c     Thus, ffx will subsequently be multiplied by rho(x,t).
+c
+c      implicit none
+
+      integer ix,iy,iz,eg
+
+      include 'SIZE'
+      include 'TOTAL'
+      include 'NEKUSE'
+
+      integer e
+c     e = gllel(eg)
+
+      ffx = 0.0
+      ffy = 0.0
+      ffz = 0.0
+
+      return
+      end
+c-----------------------------------------------------------------------
+      subroutine userq(ix,iy,iz,eg) ! set source term
+
+c      implicit none
+
+      integer ix,iy,iz,eg
+
+      include 'SIZE'
+      include 'TOTAL'
+      include 'NEKUSE'
+      include "RTE_DATA"
+	  
+      integer ie
+      ie = gllel(eg)
+
+      qvol   = 0.0
+
+ 
+      if(ifield.gt.2) then
+   
+      if (ldim.eq.2) then
+       iphi = ifield - 2
+       itheta = 1
+      else 
+       ipscalar = 1+iphi+(itheta-1)*(nphi*4)
+       itheta = int((ifield-2)/(nphi*4))+1
+       iphi = (ifield-2) - (itheta-1)*(nphi*4)
+	  endif
+ 
+      qvol = Ir_src(ix,iy,iz,ie,iphi,itheta) 
+
+      endif
+
+      return
+      end
+c-----------------------------------------------------------------------
+      subroutine userbc(ix,iy,iz,iside,eg) ! set up boundary conditions
+c
+c     NOTE ::: This subroutine MAY NOT be called by every process
+c
+c      implicit none
+
+      integer ix,iy,iz,iside,eg
+
+      include 'SIZE'
+      include 'TOTAL'
+      include 'NEKUSE'
+
+c      if (cbc(iside,gllel(eg),ifield).eq.'v01')
+
+      ie = gllel(eg)
+
+      ux   = 0.0
+      uy   = 0.0
+      uz   = 0.0
+      temp = 500 !
+      flux = 0.0
+
+
+      ! for ray that is out going from this surface.
+      if (ifield.gt.2) then
+      if (cbc(iside,ie,ifield).eq.'t  ') then
+        call RTE_bc(ix,iy,iz,iside,ie,temp)
+      endif
+      endif
+
+      return
+      end
+c-----------------------------------------------------------------------
+      subroutine useric(ix,iy,iz,eg) ! set up initial conditions
+
+c      implicit none
+
+      integer ix,iy,iz,eg
+
+      include 'SIZE'
+      include 'TOTAL'
+      include 'NEKUSE'
+
+      ux   = 0.0
+      uy   = 0.0
+      uz   = 0.0
+      temp = 1500
+
+      if (ifield.gt.2) then
+       temp = 2000
+      endif
+
+      return
+      end
+c-----------------------------------------------------------------------
+      subroutine userchk()
+
+c      implicit none
+
+      include 'SIZE'
+      include 'TOTAL'
+
+
+      ifflow = .false. ! freeze flow
+c      ifheat = .false. ! this will turn off solving for temperature and all passive scalar was well
+      idpss(1) = -1 ! turn off temperature
+
+	  call RTE_incident_radiation_flux_on_bc()
+      call RTE_source_term()
+
+      return
+      end
+c-----------------------------------------------------------------------
+      subroutine userqtl ! Set thermal divergence
+
+      call userqtl_scig 
+
+      return
+      end
+c-----------------------------------------------------------------------
+      subroutine usrdat()   ! This routine to modify element vertices
+
+c      implicit none
+
+      include 'SIZE'
+      include 'TOTAL'
+
+      return
+      end
+c-----------------------------------------------------------------------
+      subroutine usrdat2()  ! This routine to modify mesh coordinates
+
+c      implicit none
+
+      include 'SIZE'
+      include 'TOTAL'
+	  
+C for velocity bc
+
+      do iel=1,nelv
+      do ifc=1,2*ndim
+        id_face = bc(5,ifc,iel,1)
+        if (id_face.eq.1) then       
+           cbc(ifc,iel,1) = 'W  '
+           cbc(ifc,iel,2) = 't  '
+        elseif (id_face.eq.2) then  
+           cbc(ifc,iel,1) = 'W  '
+           cbc(ifc,iel,2) = 't  '
+        elseif (id_face.eq.3) then    
+           cbc(ifc,iel,1) = 'P  '
+           cbc(ifc,iel,2) = 'P  '
+        elseif (id_face.eq.4) then  
+           cbc(ifc,iel,1) = 'P  '
+           cbc(ifc,iel,2) = 'P  '
+        endif
+      enddo
+      enddo
+
+      do iel=1,nelv
+      do ifc=1,2*ndim
+         if (cbc(ifc,iel,1).eq.'P  ') then
+            do i = 1,ldimt
+             cbc(ifc,iel,i+1) = 'P  '
+            enddo
+         endif
+      enddo
+      enddo
+	  
+      call RTE_solid_angle_discretization()  
+
+      call RTE_bc_setup()
+
+      return
+      end
+c-----------------------------------------------------------------------
+      subroutine usrdat3()
+
+c      implicit none
+
+      include 'SIZE'
+      include 'TOTAL'
+
+      return
+      end

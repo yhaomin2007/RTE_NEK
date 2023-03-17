@@ -1,0 +1,98 @@
+/shared/intel/compilers_and_libraries_2020.0.166/linux/mpi/intel64/bin/mpif77
+/----------------------------------------------------------\\
+|      _   __ ______ __ __  ______  ____   ____   ____     |
+|     / | / // ____// //_/ / ____/ / __ \\/ __ \\/ __ \\   |
+|    /  |/ // __/  / ,<   /___ \\ / / / // / / // / / /    |
+|   / /|  // /___ / /| | ____/ / / /_/ // /_/ // /_/ /     |
+|  /_/ |_//_____//_/ |_|/_____/  \\___/ \\___/ \\___/      |
+|                                                          |
+|----------------------------------------------------------|
+|                                                          |
+| COPYRIGHT (c) 2008-2020 UCHICAGO ARGONNE, LLC            |
+| Version:  20.0-dev                                       |
+| Web:      https://nek5000.mcs.anl.gov                    |
+|                                                          |
+\\----------------------------------------------------------/
+
+ Number of MPI ranks :           4
+  
+ Reading 2d_rte.par                                                                                                                          
+general = [(null)]
+general:numsteps = [16000]
+general:dt = [1.0e-3]
+general:timestepper = [bdf2]
+general:extrapolation = [OIFS]
+general:targetcfl = [3.8]
+general:writeinterval = [100]
+general:filtering = [hpfrt]
+general:filterweight = [10]
+general:filtercutoffratio = [0.9]
+problemtype = [(null)]
+problemtype:equation = [incompNS]
+problemtype:variableproperties = [yes]
+problemtype:stressformulation = [yes]
+pressure = [(null)]
+pressure:residualtol = [1e-04]
+pressure:residualproj = [yes]
+velocity = [(null)]
+velocity:density = [1.]
+velocity:viscosity = [-19000]
+velocity:residualtol = [1e-06]
+temperature = [(null)]
+temperature:conjugateheattransfer = [yes]
+temperature:rhocp = [1.0]
+temperature:conductivity = [0.5]
+temperature:residualtol = [1e-06]
+scalar01 = [(null)]
+scalar01:density = [1.0]
+scalar01:diffusivity = [1.0e-3]
+scalar01:residualproj = [no]
+scalar01:residualtol = [1.0e-6]
+scalar02 = [(null)]
+scalar02:density = [1.0]
+scalar02:diffusivity = [1.0e-3]
+scalar02:residualproj = [no]
+scalar02:residualtol = [1.0e-6]
+scalar03 = [(null)]
+scalar03:density = [1.0]
+scalar03:diffusivity = [1.0e-3]
+scalar03:residualproj = [no]
+scalar03:residualtol = [1.0e-6]
+scalar04 = [(null)]
+scalar04:density = [1.0]
+scalar04:diffusivity = [1.0e-3]
+scalar04:residualproj = [yes]
+scalar04:residualtol = [1.0e-6]
+scalar05 = [(null)]
+scalar05:density = [1.0]
+scalar05:diffusivity = [1.0e-3]
+scalar05:residualproj = [no]
+scalar05:residualtol = [1.0e-6]
+scalar06 = [(null)]
+scalar06:density = [1.0]
+scalar06:diffusivity = [1.0e-3]
+scalar06:residualproj = [no]
+scalar06:residualtol = [1.0e-6]
+scalar07 = [(null)]
+scalar07:density = [1.0]
+scalar07:diffusivity = [1.0e-3]
+scalar07:residualproj = [no]
+scalar07:residualtol = [1.0e-6]
+scalar08 = [(null)]
+scalar08:density = [1.0]
+scalar08:diffusivity = [1.0e-3]
+scalar08:residualproj = [yes]
+scalar08:residualtol = [1.0e-6]
+ reading 2d_rte.re2                                                                                                                          
+ hdr:#v002      200  2      200 this is the hdr                                      
+ partioning elements to MPI ranks
+ reading mesh 
+   readp_re2_mesh:pack/cr/unpack : 0.13E-04 0.49E-04 0.36E-05
+   readp_re2_mesh:byte_read_mpi  : 0.13E+00
+ reading boundary faces                   60 for ifield   1
+   readp_re2_bc:pack/cr/unpack : 0.13E-05 0.21E-04 0.20E-05
+   readp_re2_bc:byte_read_mpi  : 0.41E-01
+ERROR: Error reading .re2 boundary data  ierr=  4 
+  
+an error occured: dying ...
+  
