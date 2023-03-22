@@ -1,0 +1,32 @@
+#! /usr/bin/env bash
+if [[ ! -z $5 ]];then
+  ntpn=$5
+else
+  ntpn=32
+fi
+prj=neams
+echo "submitting job \"$1\" on $2 nodes ($ntpn ppn) for $3 hours and $4 minutes on project $prj"
+echo "#!/bin/bash"                                  >  "$1.batch"
+echo "#PBS -N $1"                                   >> "$1.batch"
+echo "#PBS -l select=$2:ncpus=$ntpn:mpiprocs=$ntpn" >> "$1.batch"
+echo "#PBS -l walltime=$3:$4:00"                    >> "$1.batch"
+echo "#PBS -j oe"                                   >> "$1.batch"
+echo "#PBS -P $prj"                                 >> "$1.batch"
+echo "#PBS -o $1.out"                               >> "$1.batch"
+echo "cd \$PBS_O_WORKDIR"                           >> "$1.batch"
+echo "export OMP_NUM_THREADS=1"                     >> "$1.batch"
+echo "echo " $1 ">" SESSION.NAME                    >> "$1.batch"
+echo "echo \`pwd\`'/' >> SESSION.NAME"              >> "$1.batch"
+echo rm -rf *.sch                                   >> "$1.batch"
+echo rm -rf ioinfo                                  >> "$1.batch"
+echo "module purge"                                 >> "$1.batch"
+echo "module load mpt"                              >> "$1.batch"
+echo "mpirun ./nek5000 > logfile"                   >> "$1.batch"
+qsub $1.batch
+
+cp logfile2 logfile3
+cp logfile logfile2
+
+sleep 3
+qstat -u `whoami`
+

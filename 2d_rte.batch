@@ -1,13 +1,16 @@
 #!/bin/bash
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=4
-#SBATCH --time=0:10:00
-#SBATCH --output=logfile
-#SBATCH -p compute
-echo 2d_rte > SESSION.NAME
+#PBS -N 2d_rte
+#PBS -l select=1:ncpus=32:mpiprocs=32
+#PBS -l walltime=0:10:00
+#PBS -j oe
+#PBS -P neams
+#PBS -o 2d_rte.out
+cd $PBS_O_WORKDIR
+export OMP_NUM_THREADS=1
+echo  2d_rte > SESSION.NAME
 echo `pwd`'/' >> SESSION.NAME
-rm -f *.sch
-rm -f ioinfo
-which mpif77 >> logfile
-mpirun ./nek5000
-exit 0;
+rm -rf *.sch
+rm -rf ioinfo
+module purge
+module load mpt
+mpirun ./nek5000 > logfile

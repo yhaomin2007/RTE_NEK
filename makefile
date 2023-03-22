@@ -1,8 +1,8 @@
-### makefile automatically created by makenek 03/16/2023 17:20:32 ###
+### makefile automatically created by makenek 03/22/2023 13:09:20 ###
 BINNAME=nek5000
 CASENAME:=2d_rte
-CASEDIR:=/home/hyuan/scr_hyuan/RTE/RTE_NEK
-S:=/home/hyuan/Nek5000_03162023/Nek5000
+CASEDIR:=/home/yuanhaom/scr/RTE/RTE_NEK
+S:=/home/yuanhaom/Nek5000_12072022/Nek5000
 OPT_INCDIR=./ 
 OBJDIR=$(CASEDIR)/obj
 LIB=$(OBJDIR)/libnek5000.a
@@ -15,10 +15,10 @@ CFLAGS+=
 LDFLAGS+= -Wl,--allow-multiple-definition
 
 PPPO=
-PPS= MPI UNDERSCORE GLOBAL_LONG_LONG TIMER
+PPS=HYPRE MPI UNDERSCORE GLOBAL_LONG_LONG TIMER
 
 USR=
-USR_LFLAGS= -L$S/3rd_party/blasLapack -lblasLapack -L$S/3rd_party/gslib/lib -lgs
+USR_LFLAGS= -L$S/3rd_party/hypre/lib -lHYPRE -L$S/3rd_party/blasLapack -lblasLapack -L$S/3rd_party/gslib/lib -lgs
 
 MPI=1
 DPROCMAP=0
@@ -26,7 +26,7 @@ VISIT=0
 
 VISIT_IFLAGS=
 VISIT_LFLAGS=
-HYPRE_IFLAGS=
+HYPRE_IFLAGS:=-I$S/3rd_party/hypre/include
 GSLIB_IFLAGS:= -I$S/3rd_party/gslib/include
 PARRSB_IFLAGS=
 
@@ -37,7 +37,7 @@ PPS_C = $(patsubst %,-D%,$(PPS))
 
 # CORE##########################################################################
 CORE = drive1.o drive2.o \
-plan5.o nekio.o \
+plan5.o \
 plan4.o bdry.o coef.o conduct.o connect1.o connect2.o \
 dssum.o eigsolv.o gauss.o genxyz.o navier1.o makeq.o \
 navier0.o navier2.o navier3.o navier4.o prepost.o speclib.o \
@@ -229,7 +229,6 @@ $(OBJDIR)/crs_amg.o          :$S/core/crs_amg.c;           $(CC) -c $(cFL2) $(GS
 $(OBJDIR)/fem_amg_preco.o    :$S/core/experimental/fem_amg_preco.c; $(CC) -c $(cFL2) $(GSLIB_IFLAGS) $(HYPRE_IFLAGS) $< -o $@
 $(OBJDIR)/crs_hypre.o        :$S/core/experimental/crs_hypre.c; $(CC) -c $(cFL2) $(GSLIB_IFLAGS) $(HYPRE_IFLAGS) $< -o $@
 $(OBJDIR)/partitioner.o      :$S/core/partitioner.c;       $(CC) -c $(cFL2) $(GSLIB_IFLAGS) $(PARRSB_IFLAGS) $< -o $@
-$(OBJDIR)/nekio.o          :$S/core/nekio.c;           $(CC) -c $(cFL2) $(GSLIB_IFLAGS) $< -o $@
 
 # 3rd party #######################################################################################
 $(OBJDIR)/visit.o        :$S/core/3rd_party/visit.f;	     $(FC) -c $(VISIT_IFLAGS) $(FL2) $< -o $@

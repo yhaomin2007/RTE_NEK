@@ -31,7 +31,6 @@ viscosity = -19000
 residualTol = 1e-06
 
 [TEMPERATURE] 
-conjugateHeatTransfer = yes 
 rhoCp = 1.0
 conductivity = 0.5
 residualTol = 1e-06
@@ -39,25 +38,21 @@ residualTol = 1e-06
 [scalar01]
 density = 1.0
 diffusivity = 1.0e-3
-residualProj = no
 residualTol = 1.0e-6
 
 [scalar02]
 density = 1.0
 diffusivity = 1.0e-3
-residualProj = no
 residualTol = 1.0e-6
 
 [scalar03]
 density = 1.0
 diffusivity = 1.0e-3
-residualProj = no
 residualTol = 1.0e-6
 
 [scalar04]
 density = 1.0
 diffusivity = 1.0e-3
-residualProj = yes
 residualTol = 1.0e-6
 
 [scalar05]
@@ -69,17 +64,14 @@ residualTol = 1.0e-6
 [scalar06]
 density = 1.0
 diffusivity = 1.0e-3
-residualProj = no
 residualTol = 1.0e-6
 
 [scalar07]
 density = 1.0
 diffusivity = 1.0e-3
-residualProj = no
 residualTol = 1.0e-6
 
 [scalar08]
 density = 1.0
 diffusivity = 1.0e-3
-residualProj = yes
 residualTol = 1.0e-6

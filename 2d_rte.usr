@@ -68,19 +68,17 @@ c      implicit none
       include 'NEKUSE'
       include "RTE_DATA"
 	  
-      integer ie
+      integer ie,iphi,itheta
       ie = gllel(eg)
 
       qvol   = 0.0
 
- 
       if(ifield.gt.2) then
    
       if (ldim.eq.2) then
        iphi = ifield - 2
        itheta = 1
-      else 
-       ipscalar = 1+iphi+(itheta-1)*(nphi*4)
+      else
        itheta = int((ifield-2)/(nphi*4))+1
        iphi = (ifield-2) - (itheta-1)*(nphi*4)
 	  endif
@@ -104,6 +102,8 @@ c      implicit none
       include 'TOTAL'
       include 'NEKUSE'
 
+      real ray
+
 c      if (cbc(iside,gllel(eg),ifield).eq.'v01')
 
       ie = gllel(eg)
@@ -118,7 +118,8 @@ c      if (cbc(iside,gllel(eg),ifield).eq.'v01')
       ! for ray that is out going from this surface.
       if (ifield.gt.2) then
       if (cbc(iside,ie,ifield).eq.'t  ') then
-        call RTE_bc(ix,iy,iz,iside,ie,temp)
+        call RTE_bc(ix,iy,iz,iside,ie,ray)
+        temp = ray
       endif
       endif
 
@@ -138,10 +139,10 @@ c      implicit none
       ux   = 0.0
       uy   = 0.0
       uz   = 0.0
-      temp = 1500
+      temp = 1500.0
 
       if (ifield.gt.2) then
-       temp = 2000
+       temp = 2000.0
       endif
 
       return
@@ -153,14 +154,20 @@ c      implicit none
 
       include 'SIZE'
       include 'TOTAL'
+	  
+      ntot = lx1*ly1*lz1*nelt
 
-
-      ifflow = .false. ! freeze flow
-c      ifheat = .false. ! this will turn off solving for temperature and all passive scalar was well
-      idpss(1) = -1 ! turn off temperature
-
+c calculate incident radiation flux on boundary
 	  call RTE_incident_radiation_flux_on_bc()
+	  
+c calculate rhs(source term) for RTE equation
       call RTE_source_term()
+
+      do i = 1,ldimt-1
+      varmin = glmin(t(1,1,1,1,i+1),ntot)
+      varmax = glmax(t(1,1,1,1,i+1),ntot)
+      if (nid.eq.0) write(6,*) 't ',i+1,' min/max:',varmin,'-',varmax
+      enddo
 
       return
       end
@@ -197,7 +204,7 @@ C for velocity bc
         if (id_face.eq.1) then       
            cbc(ifc,iel,1) = 'W  '
            cbc(ifc,iel,2) = 't  '
-        elseif (id_face.eq.2) then  
+        elseif (id_face.eq.2) then
            cbc(ifc,iel,1) = 'W  '
            cbc(ifc,iel,2) = 't  '
         elseif (id_face.eq.3) then    
@@ -210,18 +217,21 @@ C for velocity bc
       enddo
       enddo
 
+c copy periodic bc to passive scalars
       do iel=1,nelv
       do ifc=1,2*ndim
          if (cbc(ifc,iel,1).eq.'P  ') then
-            do i = 1,ldimt
-             cbc(ifc,iel,i+1) = 'P  '
+            do i = 1,ldimt-1
+             cbc(ifc,iel,i+2) = 'P  '
             enddo
          endif
       enddo
       enddo
-	  
+
+c solid angle discretization
       call RTE_solid_angle_discretization()  
 
+c bc setup for I fields
       call RTE_bc_setup()
 
       return
@@ -233,6 +243,10 @@ c      implicit none
 
       include 'SIZE'
       include 'TOTAL'
+
+      ifflow = .false. ! freeze flow
+c      ifheat = .false. ! this will turn off solving for temperature and all passive scalar was well
+      idpss(1) = -1 ! turn off temperature
 
       return
       end

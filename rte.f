@@ -5,6 +5,8 @@ c      implicit none
       include 'TOTAL'
       include "RTE_DATA"
 
+      real dphi,dtheta
+
       ntot = lx1*ly1*lz1*nelt
 
       ! nphi = 2     ! change in RTE_DATA
@@ -29,10 +31,10 @@ c      implicit none
  
 
       if (ldim.eq.2) then  ! 2d
-      
+      itheta = 1
       do iphi = 1,nphi*4
-      sn_x(iphi,itheta)= 2*sin(sa_phi(iphi))*sin(0.5*dphi)
-      sn_y(iphi,itheta)= 2*cos(sa_phi(iphi))*sin(0.5*dphi)
+      sn_x(iphi,itheta)= 2.0*sin(sa_phi(iphi))*sin(0.5*dphi)
+      sn_y(iphi,itheta)= 2.0*cos(sa_phi(iphi))*sin(0.5*dphi)
       sa_w(iphi,1) = dphi/(2.0*sn_pi)
       enddo
 
@@ -43,10 +45,10 @@ c      implicit none
       do itheta = 1,ntheta
       do iphi = 1,nphi*4
       sn_x(iphi,itheta)=sin(sa_phi(iphi))*sin(0.5*dphi)*
-     & (dtheta-cos(2*sa_theta(itheta))*sin(dtheta))
+     & (dtheta-cos(2.0*sa_theta(itheta))*sin(dtheta))
       sn_y(iphi,itheta)=cos(sa_phi(iphi))*sin(0.5*dphi)*
-     & (dtheta-cos(2*sa_theta(itheta))*sin(dtheta))
-      sn_z(iphi,itheta)=0.5*dphi*sin(2*sa_theta(itheta))*sin(dtheta)     
+     & (dtheta-cos(2.0*sa_theta(itheta))*sin(dtheta))
+      sn_z(iphi,itheta)=0.5*dphi*sin(2.0*sa_theta(itheta))*sin(dtheta)     
       
       sa_w(iphi,itheta) = sin(sa_theta(itheta))*dtheta*dphi
       sa_tot = sa_tot + sa_w(iphi,itheta)
@@ -99,7 +101,7 @@ c if angle more than 90 degree, then this face should be f for this angle
         do j=j0,j1
         do i=i0,i1
 
-        call getSnormal(sn2,ix,iy,iz,iface,ie)
+        call getSnormal(sn2,i,j,k,iface,ie)
 
         snfnx(i,j,k,ie) = sn2(1)
         snfny(i,j,k,ie) = sn2(2)
@@ -213,8 +215,8 @@ c      implicit none
           if (cbc(iface,ie,ipscalar+1).eq.'f  ') then
        Ir_ibc(i,j,k,ie) = Ir_ibc(i,j,k,ie)
      & + t(i,j,k,ie,ipscalar)
-     & *(sn_x(iphi,1)*efn(1,ifc,ie)
-     & +sn_y(iphi,1)*efn(2,ifc,ie))
+     & *(sn_x(iphi,1)*efn(1,iface,ie)
+     & +sn_y(iphi,1)*efn(2,iface,ie))
 
           endif
           enddo
@@ -228,9 +230,9 @@ c      implicit none
          if (cbc(iface,ie,ipscalar+1).eq.'f  ') then
       Ir_ibc(i,j,k,ie) = Ir_ibc(i,j,k,ie)
      & + t(i,j,k,ie,ipscalar)
-     & *(sn_x(iphi,itheta)*efn(1,ifc,ie)
-     & +sn_y(iphi,itheta)*efn(2,ifc,ie)
-     & +sn_z(iphi,itheta)*efn(3,ifc,ie))
+     & *(sn_x(iphi,itheta)*efn(1,iface,ie)
+     & +sn_y(iphi,itheta)*efn(2,iface,ie)
+     & +sn_z(iphi,itheta)*efn(3,iface,ie))
 
           endif
 
@@ -248,7 +250,10 @@ c      implicit none
       enddo      
       enddo
 
-      
+      varmin = glmin(Ir_ibc,ntot)
+      varmax = glmax(Ir_ibc,ntot)
+      if (nid.eq.0) write(6,*) 'Ir_ibc min/max:',varmin,'-',varmax   
+   
       end
 c--------------------------------------------------------------------
 c--------------------------------------------------------------------
@@ -259,6 +264,7 @@ c      implicit none
       include "RTE_DATA"
       
       integer ix,iy,iz,iside,ie
+      real temp,t_loc
 
       t_loc = t(ix,iy,iz,ie,1)
 
@@ -289,7 +295,17 @@ c Ir_src = sn  dot grad ir
 
           do iphi = 1,nphi*4          
            ipscalar = 1+iphi
-           call gradm1(t(1,1,1,1,ipscalar),dtdx,dtdy,dtdz)
+
+      call gradm1(dtdx,dtdy,dtdz,t(1,1,1,1,ipscalar))
+
+      !call opgrad  (dtdx,dtdy,dtdz,t(1,1,1,1,ipscalar))
+
+      ! ensure continuity at element boundaries
+      call opcolv (dtdx,dtdy,dtdz,bm1)
+      call opdssum (dtdx,dtdy,dtdz)
+      call opcolv  (dtdx,dtdy,dtdz,binvm1)
+
+
            do i = 1,ntot
       Ir_src(i,1,1,1,iphi,1) =
      & - sn_x(iphi,1)*dtdx(i,1,1,1)
@@ -303,10 +319,16 @@ c Ir_src = sn  dot grad ir
 
           do itheta = 1,ntheta
           do iphi = 1,nphi*4
-          ipscalar = 1+iphi+(itheta-1)*(nphi*4)
+           ipscalar = 1+iphi+(itheta-1)*(nphi*4)
+      call gradm1(dtdx,dtdy,dtdz,t(1,1,1,1,ipscalar))
 
-           call gradm1(t(1,1,1,1,ipscalar),dtdx,dtdy,dtdz)
+	  !call opgrad  (dtdx,dtdy,dtdz,t(1,1,1,1,ipscalar))
 
+      ! ensure continuity at element boundaries
+      call opcolv (dtdx,dtdy,dtdz,bm1)
+      call opdssum (dtdx,dtdy,dtdz)
+      call opcolv  (dtdx,dtdy,dtdz,binvm1)
+		   
            do i = 1,ntot
       Ir_src(i,1,1,1,iphi,itheta) = 
      & - sn_x(iphi,itheta)*dtdx(i,1,1,1)
@@ -322,6 +344,32 @@ c Ir_src = sn  dot grad ir
 
         endif
 
+
+       if (ldim.eq.2) then
+
+          do iphi = 1,nphi*4          
+          varmin = glmin(Ir_src(1,1,1,1,iphi,1),ntot)
+          varmax = glmax(Ir_src(1,1,1,1,iphi,1),ntot)
+          if (nid.eq.0) then
+       write(6,*) 'Ir_src iphi ',iphi,' min/max:',varmin,'-',varmax
+          endif
+          enddo
+
+        else
+
+          do itheta = 1,ntheta
+          do iphi = 1,nphi*4
+          varmin = glmin(Ir_src(1,1,1,1,iphi,itheta),ntot)
+          varmax = glmax(Ir_src(1,1,1,1,iphi,itheta),ntot)
+          if (nid.eq.0) then
+       write(6,*) 'Ir_src iphi ',iphi,' itheta ',itheta,
+     & ' min/max:',varmin,'-',varmax
+          endif
+
+          enddo
+          enddo
+
+        endif
 
       return
       end

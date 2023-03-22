@@ -1,0 +1,3 @@
+ filetemplate: /home/yuanhaom/scr/RTE/RTE_NEK/2d_rte%01d.f%05d
+ firsttimestep: 1
+ numtimesteps:          160
