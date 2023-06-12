@@ -3,14 +3,14 @@
 #
 [GENERAL] 
 #startFrom = restart.fld U time=0 
-numSteps = 16000
+numSteps = 10
 
 dt = 1.0e-3
 timeStepper = bdf2
 extrapolation = OIFS
 targetCFL = 3.8
 
-writeInterval = 100
+writeInterval = 1
 
 filtering = hpfrt
 filterWeight = 10

@@ -9,6 +9,9 @@
       real sn_x(4*nphi,ntheta),
      & sn_y(4*nphi,ntheta),
      & sn_z(4*nphi,ntheta),
+     & snxf(lx1,ly1,lz1,lelt),
+     & snyf(lx1,ly1,lz1,lelt),
+     & snzf(lx1,ly1,lz1,lelt),
      & Ir(lx1,ly1,lz1,lelt,4*nphi,ntheta), 
      & Ir_src(lx1,ly1,lz1,lelt,4*nphi,ntheta), 
      & Ir_ibc(lx1,ly1,lz1,lelt),
@@ -17,9 +20,10 @@
      & snfny(lx1,ly1,lz1,lelt),     
      & snfnz(lx1,ly1,lz1,lelt),
      & efn(3,2*ldim,lelt),
-     & emissivity,sigma_b,sigma_t
+     & emissivity,sigma_b,sigma_t,sigma_d
        
       common /RTE_data/ sa_phi,sa_theta,sa_w,sn_pi,
      & sn_x,sn_y,sn_z,
+     & snxf,snyf,snzf,
      & Ir,Ir_src,Ir_ibc,Qr,snfnx,snfny,snfnz,efn,
-     & emissivity,sigma_b,sigma_t
+     & emissivity,sigma_b,sigma_t,sigma_d

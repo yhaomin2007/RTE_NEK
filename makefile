@@ -1,4 +1,4 @@
-### makefile automatically created by makenek 03/22/2023 13:09:20 ###
+### makefile automatically created by makenek 06/11/2023 16:01:56 ###
 BINNAME=nek5000
 CASENAME:=2d_rte
 CASEDIR:=/home/yuanhaom/scr/RTE/RTE_NEK

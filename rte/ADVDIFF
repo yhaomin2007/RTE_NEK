@@ -1,0 +1,28 @@
+c-----------------------------------------------------------------------
+c     dependency: SIZE
+      integer lt, lvd
+      parameter (lt=lx1*ly1*lz1*lelt)
+      parameter (lvd=lxd*lyd*lzd*lelv)
+
+c     coefficients for adv-diff
+      real cx (lx1,ly1,lz1,lelt)
+     $   , cy (lx1,ly1,lz1,lelt)
+     $   , cz (lx1,ly1,lz1,lelt)
+     $   , cxd(lvd), cyd(lvd), czd(lvd)
+     $   , coef_a(lx1,ly1,lz1,lelt)
+     $   , coef_b(lx1,ly1,lz1,lelt)
+     $   , coef_c(lx1,ly1,lz1,lelt)
+   
+      common /my_advdiff/ cx, cy, cz, cxd, cyd, czd
+     $                  , coef_a, coef_b, coef_c
+
+
+c     sem geometric factor
+      real myg1m1(lx1,ly1,lz1,lelt)
+     $   , myg2m1(lx1,ly1,lz1,lelt)
+     $   , myg3m1(lx1,ly1,lz1,lelt)
+     $   , myg4m1(lx1,ly1,lz1,lelt)
+     $   , myg5m1(lx1,ly1,lz1,lelt)
+     $   , myg6m1(lx1,ly1,lz1,lelt)
+      common / my_sem_geom / myg1m1, myg2m1, myg3m1
+     $                     , myg4m1, myg5m1, myg6m1

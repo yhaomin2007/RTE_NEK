@@ -1,4 +1,4 @@
-      include "rte.f"
+      include "rte/rte.f"
 c-----------------------------------------------------------------------
 c  nek5000 user-file template
 c
@@ -66,26 +66,25 @@ c      implicit none
       include 'SIZE'
       include 'TOTAL'
       include 'NEKUSE'
-      include "RTE_DATA"
 	  
       integer ie,iphi,itheta
       ie = gllel(eg)
 
       qvol   = 0.0
 
-      if(ifield.gt.2) then
-   
-      if (ldim.eq.2) then
-       iphi = ifield - 2
-       itheta = 1
-      else
-       itheta = int((ifield-2)/(nphi*4))+1
-       iphi = (ifield-2) - (itheta-1)*(nphi*4)
-	  endif
- 
-      qvol = Ir_src(ix,iy,iz,ie,iphi,itheta) 
-
-      endif
+c      if(ifield.gt.2) then
+c   
+c      if (ldim.eq.2) then
+c       iphi = ifield - 2
+c       itheta = 1
+c      else
+c       itheta = int((ifield-2)/(nphi*4))+1
+c       iphi = (ifield-2) - (itheta-1)*(nphi*4)
+c	  endif
+c 
+c      qvol = Ir_src(ix,iy,iz,ie,iphi,itheta) 
+c
+c      endif
 
       return
       end
@@ -96,7 +95,7 @@ c     NOTE ::: This subroutine MAY NOT be called by every process
 c
 c      implicit none
 
-      integer ix,iy,iz,iside,eg
+      integer ix,iy,iz,iside,eg,ie
 
       include 'SIZE'
       include 'TOTAL'
@@ -118,7 +117,7 @@ c      if (cbc(iside,gllel(eg),ifield).eq.'v01')
       ! for ray that is out going from this surface.
       if (ifield.gt.2) then
       if (cbc(iside,ie,ifield).eq.'t  ') then
-        call RTE_bc(ix,iy,iz,iside,ie,ray)
+        call RTE_bc(ix,iy,iz,ie,ray)
         temp = ray
       endif
       endif
@@ -157,11 +156,9 @@ c      implicit none
 	  
       ntot = lx1*ly1*lz1*nelt
 
-c calculate incident radiation flux on boundary
-	  call RTE_incident_radiation_flux_on_bc()
-	  
-c calculate rhs(source term) for RTE equation
-      call RTE_source_term()
+c solve RTE equation
+      if(istep.gt.0) call RTE_solve()
+c      if(istep.gt.1) idpss(1) = -1 ! turn off temperature
 
       do i = 1,ldimt-1
       varmin = glmin(t(1,1,1,1,i+1),ntot)
@@ -228,11 +225,10 @@ c copy periodic bc to passive scalars
       enddo
       enddo
 
-c solid angle discretization
-      call RTE_solid_angle_discretization()  
+c setuo for RTE solver
+      call RTE_setup()
 
-c bc setup for I fields
-      call RTE_bc_setup()
+
 
       return
       end
