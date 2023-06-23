@@ -1,9 +1,9 @@
-NEK_SOURCE_ROOT=/home/yuanhaom/Nek5000_12072022/Nek5000
+NEK_SOURCE_ROOT=/home/yuanhaom/Nek5000_06122023/Nek5000
 FC=mpif77
 FFLAGS=
 FCPP=-cpp
 FR8=-fdefault-real-8 -fdefault-double-8
 FF77=-w -std=legacy
-CC=mpicc
+CC=mpicc -std=c99
 CFLAGS=
 PPLIST=HYPRE MPI UNDERSCORE GLOBAL_LONG_LONG TIMER

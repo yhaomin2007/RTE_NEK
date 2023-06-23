@@ -6,13 +6,13 @@ set -a
 module load mpt
 
 # source path 
-NEK_SOURCE_ROOT="$HOME/Nek5000_12072022/Nek5000" 
+NEK_SOURCE_ROOT="$HOME/Nek5000_06122023/Nek5000" 
 
 # Fortran/C compiler
 #FC="mpif77 -mcmodel=large  -std=c99"
 #CC="mpicc -mcmodel=large  -std=c99"
 FC="mpif77"
-CC="mpicc"
+CC="mpicc -std=c99"
 
 # config options (set to "?" to get a list)
 PPLIST="HYPRE" # HYPRE NEKNEK" 

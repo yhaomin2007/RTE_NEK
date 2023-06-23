@@ -3,7 +3,7 @@
 
       real sa_phi(4*nphi)
       real sa_theta(ntheta)
-      real sa_w(4*nphi,ntheta)
+      real sa_a(4*nphi,ntheta)
       real sn_pi
     
       real sn_x(4*nphi,ntheta),
@@ -22,7 +22,7 @@
      & efn(3,2*ldim,lelt),
      & emissivity,sigma_b,sigma_t,sigma_d
        
-      common /RTE_data/ sa_phi,sa_theta,sa_w,sn_pi,
+      common /RTE_data/ sa_phi,sa_theta,sa_a,sn_pi,
      & sn_x,sn_y,sn_z,
      & snxf,snyf,snzf,
      & Ir,Ir_src,Ir_ibc,Qr,snfnx,snfny,snfnz,efn,

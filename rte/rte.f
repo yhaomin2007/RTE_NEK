@@ -17,7 +17,6 @@ c solid angle discretization
 c bc setup for I fields
       call RTE_bc_setup()
 
-	  
       return
       end
 c--------------------------------------------------------------------
@@ -50,8 +49,11 @@ c
       do iter_outer = 1,niter
   
       if(nid.eq.0) write(6,*) 'solving RTEs, iter_outer: ',iter_outer
- 
+
+
+c calculate incident radiation flux on boundaries
 	  call RTE_incident_radiation_flux_on_bc()
+c calculate source term (rhs) of RTE
       call RTE_source_term()
 
       if (ldim.eq.2) then  ! 2d
@@ -67,7 +69,7 @@ c solve RTE euqation for this angle.
 c      call copy(u_exact,t(1,1,1,1,ipscalar),n) ! referenced sol from restart file
 
       call cfill(ha,sigma_d,n) ! TODO uservp
-      call cfill(hb,sigma_t,n) 
+      call cfill(hb,sigma_t*sa_a(iphi,1),n) 
       call cfill(hc,1.0,n) 
 	  
       call cfill(snxf,sn_x(iphi,1),n)
@@ -86,11 +88,12 @@ c      call copy(u_exact,t(1,1,1,1,ipscalar),n) ! referenced sol from restart fi
       !enddo
 
       ! call col3  (wt,tmask,tmult,n)
-      call col3  (wt,tmask(1,1,1,1,ipscalar),tmult,n)
+      call rzero(wt,n)
+      call col3(wt,tmask(1,1,1,1,ipscalar),tmult(1,1,1,1,ipscalar),n)
 
       call rzero(rhs,n)
-      call copy(rhs,Ir_src(1,1,1,1,iphi,1),n)
-c      call setqvol(rhs,utmp)
+c     call copy(rhs,Ir_src(1,1,1,1,iphi,1),n)
+      call setqvol(rhs,utmp)
       call col2  (rhs,bm1,n)
       call dssum (rhs,lx1,ly1,lz1)
 
@@ -99,6 +102,11 @@ c      call setqvol(rhs,utmp)
       call bcdirsc(ub)
       call adfax(utmp,ub) ! dssum and mask included
       call sub2(rhs,utmp,n) ! split inhomogenuous Dirichlet BC
+
+c      if (iphi.eq.1) then
+c      call outpost(ub,tmask(1,1,1,1,ipscalar),
+c     & tmult(1,1,1,1,ipscalar),wt,utmp,'ubb')
+c      endif
 
 c      ifield = 2 ! Neumann BC, need test
 c      call bcneusc(utmp,1)
@@ -109,12 +117,11 @@ c      call add2(rhs,utmp,n) ! add inhomogeneous Neumann 'f  ' contribution
       !call col2(rhs,tmask,n)
       call col2(rhs,tmask(1,1,1,1,ipscalar),n)
 
-
       ! linear solver
-      iter = 1000
-      tol = -1.e-3
+      iter = 10000
+      tol = -1.e-5
       call rzero(u_sol,n) ! initial gues
-      call copy(u_sol,t(1,1,1,1,ipscalar),n) 
+c      call copy(u_sol,t(1,1,1,1,ipscalar),n) 
 
       call my_gmres(u_sol,rhs,wt,iter,tol,.true.)
 c      iter = 300
@@ -122,6 +129,11 @@ c      call my_proj (u_sol,rhs,wt,iter,tol,.true.)
       call add2(u_sol,ub,n)
 
       call copy(t(1,1,1,1,ipscalar),u_sol,n) 
+
+c      if (iphi.eq.1) then
+c      call outpost(ub,tmask(1,1,1,1,ipscalar),
+c     & tmult(1,1,1,1,ipscalar),wt,t(1,1,1,1,ipscalar),'ubb')
+c      endif
 
       enddo
 
@@ -156,19 +168,19 @@ c      call copy(u_exact,t(1,1,1,1,ipscalar),n) ! referenced sol from restart fi
       !enddo
       !enddo
       !call col3  (wt,tmask,tmult,n)
-      call col3  (wt,tmask(1,1,1,1,ipscalar),tmult,n)
+      call col3(wt,tmask(1,1,1,1,ipscalar),tmult(1,1,1,1,ipscalar),n)
 
       call rzero(rhs,n)
-      call copy(rhs,Ir_src(1,1,1,1,iphi,itheta),n)
-c      call setqvol(rhs,utmp)
+c      call copy(rhs,Ir_src(1,1,1,1,iphi,itheta),n)
+      call setqvol(rhs,utmp)
       call col2  (rhs,bm1,n)
       call dssum (rhs,lx1,ly1,lz1)
 
       ifield = ipscalar+1
       call rzero(ub,n)
       call bcdirsc(ub)
-      call adfax(utmp,ub) ! dssum and mask included
-      call sub2(rhs,utmp,n) ! split inhomogenuous Dirichlet BC
+c      call adfax(utmp,ub) ! dssum and mask included
+c      call sub2(rhs,utmp,n) ! split inhomogenuous Dirichlet BC
 
 c      ifield = 2 ! Neumann BC, need test
 c      call bcneusc(utmp,1)
@@ -181,10 +193,10 @@ c      call add2(rhs,utmp,n) ! add inhomogeneous Neumann 'f  ' contribution
 
 
       ! linear solver
-      iter = 1000
-      tol = -1.e-3
+      iter = 10000
+      tol = -1.e-5
       call rzero(u_sol,n) ! initial gues
-      call copy(u_sol,t(1,1,1,1,ipscalar),n) 
+c      call copy(u_sol,t(1,1,1,1,ipscalar),n)
       call my_gmres(u_sol,rhs,wt,iter,tol,.true.)
 c      iter = 300
 c      call my_proj (u_sol,rhs,wt,iter,tol,.true.)
@@ -199,7 +211,7 @@ c      call my_proj (u_sol,rhs,wt,iter,tol,.true.)
 
       enddo  ! do iter = 1,niter
 
-      ifield_bak = ifield
+      ifield = ifield_bak
 
 	  
       return
@@ -235,7 +247,6 @@ c      implicit none
       do itheta = 1,ntheta
       sa_theta(itheta) = 0.5*dtheta + dtheta*dble(itheta-1)
       enddo
- 
 
       if (ldim.eq.2) then  ! 2d
       
@@ -244,7 +255,7 @@ c      implicit none
       sn_x(iphi,1)= 2.0*sin(sa_phi(iphi))*sin(0.5*dphi) 
       sn_y(iphi,1)= 2.0*cos(sa_phi(iphi))*sin(0.5*dphi) 
       sn_z(iphi,1) = 0.0
-      sa_w(iphi,1) = dphi
+      sa_a(iphi,1) = dphi
       enddo
 
       else  ! 3d
@@ -259,17 +270,8 @@ c      implicit none
      & (dtheta-cos(2.0*sa_theta(itheta))*sin(dtheta))
       sn_z(iphi,itheta)=0.5*dphi*sin(2*sa_theta(itheta))*sin(dtheta)     
       
-      sa_w(iphi,itheta) = 2.0*sin(sa_theta(itheta))*sin(0.5*dtheta)*dphi
-      !sa_tot = sa_tot + sa_w(iphi,itheta)
+      sa_a(iphi,itheta) = 2.0*sin(sa_theta(itheta))*sin(0.5*dtheta)*dphi
       enddo
-      enddo
-
-      ! solid angle weight
-      !do itheta = 1,ntheta
-      !do iphi = 1,nphi*4
-      !sa_w(iphi,itheta)  =  sa_w(iphi,itheta)/sa_tot
-      !enddo
-      !enddo
 
       endif
  
@@ -283,7 +285,7 @@ c      implicit none
       include "rte/RTE_DATA"
 
       integer ipscalar
-      real angle
+      real angle,ssnn
 
       real sn2(3),sint2,sarea2
       real sn3(3)
@@ -338,9 +340,9 @@ c if angle more than 90 degree, then this face should be f for this angle
         call surface_int(sint2,sarea2,snfnz,ie,iface)  
         sn2(3) = - sint2/sarea2
 
-        efn(1,iface,ie) =   sn2(1)   ! element face normal, point to inside
-        efn(2,iface,ie) =   sn2(2) 
-        efn(3,iface,ie) =   sn2(3) 
+        efn(1,iface,ie) = sn2(1)   ! element face normal, point to inside
+        efn(2,iface,ie) = sn2(2) 
+        efn(3,iface,ie) = sn2(3) 
 
         if (ldim.eq.2) then
 
@@ -370,7 +372,7 @@ c if angle more than 90 degree, then this face should be f for this angle
           sn3(3) = cos(sa_theta(itheta))
 
           ssnn = (sn2(1)*sn3(1)+sn2(2)*sn3(2)+sn2(3)*sn3(3))
-          
+
             if  (ssnn.ge.0.0) then
             cbc(iface,ie,ipscalar+1) = 't  '
             else 
@@ -387,6 +389,49 @@ c if angle more than 90 degree, then this face should be f for this angle
       enddo      
       enddo
 
+c     call rzero(snfnx,ntot)
+c     call rzero(snfny,ntot)
+c     call rzero(snfnz,ntot)
+c	  
+c     do ie = 1,nelt
+c     do iface = 1,2*ldim
+c         iphi = 1
+c         ipscalar = 1+iphi
+c        if (cbc(iface,ie,ipscalar+1).eq.'t  ') then
+c		 
+c       call facind(i0,i1,j0,j1,k0,k1,nx1,ny1,nz1,iface)
+c       do k=k0,k1
+c       do j=j0,j1
+c       do i=i0,i1
+c
+c       snfnx(i,j,k,ie) = 1
+c
+c       enddo
+c       enddo
+c       enddo
+c
+c        endif
+c		 
+c        if (cbc(iface,ie,ipscalar+1).eq.'f  ') then
+c		 
+c       call facind(i0,i1,j0,j1,k0,k1,nx1,ny1,nz1,iface)
+c       do k=k0,k1
+c       do j=j0,j1
+c       do i=i0,i1
+c
+c       snfnx(i,j,k,ie) = 2
+c
+c       enddo
+c       enddo
+c       enddo
+c
+c        endif
+c	 
+c     enddo
+c     enddo
+c
+c     call outpost(snfnx,snfnx,snfnx,snfnx,snfnx,'bcf')
+c
       return
       end
 c--------------------------------------------------------------------
@@ -510,7 +555,7 @@ c     & - sigma_t*t(i,1,1,1,ipscalar)
 c     & + sigma_t*sigma_b*t(i,1,1,1,1)**4.0/sn_pi
 	 
       Ir_src(i,1,1,1,iphi,1) =
-     & sigma_t*sigma_b*t(i,1,1,1,1)**4.0/sn_pi
+     & sigma_t*sa_a(iphi,1)*sigma_b*t(i,1,1,1,1)**4.0/sn_pi
            enddo         
           enddo
 
@@ -531,7 +576,7 @@ c     & - sigma_t*t(i,1,1,1,ipscalar)
 c     & + sigma_t*sigma_b*t(i,1,1,1,1)**4.0/sn_pi
 
       Ir_src(i,1,1,1,iphi,itheta) = 
-     & sigma_t*sigma_b*t(i,1,1,1,1)**4.0/sn_pi
+     & sigma_t*sa_a(iphi,itheta)*sigma_b*t(i,1,1,1,1)**4.0/sn_pi
            enddo         
 
           enddo

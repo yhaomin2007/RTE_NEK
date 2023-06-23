@@ -66,25 +66,27 @@ c      implicit none
       include 'SIZE'
       include 'TOTAL'
       include 'NEKUSE'
-	  
+      include "rte/RTE_DATA"
+
+
       integer ie,iphi,itheta
       ie = gllel(eg)
 
       qvol   = 0.0
 
-c      if(ifield.gt.2) then
-c   
-c      if (ldim.eq.2) then
-c       iphi = ifield - 2
-c       itheta = 1
-c      else
-c       itheta = int((ifield-2)/(nphi*4))+1
-c       iphi = (ifield-2) - (itheta-1)*(nphi*4)
-c	  endif
-c 
-c      qvol = Ir_src(ix,iy,iz,ie,iphi,itheta) 
-c
-c      endif
+      if(ifield.gt.2) then
+   
+      if (ldim.eq.2) then
+       iphi = ifield - 2
+       itheta = 1
+      else
+       itheta = int((ifield-2)/(nphi*4))+1
+       iphi = (ifield-2) - (itheta-1)*(nphi*4)
+	  endif
+ 
+      qvol = Ir_src(ix,iy,iz,ie,iphi,itheta) 
+
+      endif
 
       return
       end
@@ -113,14 +115,13 @@ c      if (cbc(iside,gllel(eg),ifield).eq.'v01')
       temp = 500 !
       flux = 0.0
 
-
       ! for ray that is out going from this surface.
-      if (ifield.gt.2) then
-      if (cbc(iside,ie,ifield).eq.'t  ') then
-        call RTE_bc(ix,iy,iz,ie,ray)
-        temp = ray
-      endif
-      endif
+      !if (ifield.gt.2) then
+      !if (cbc(iside,ie,ifield).eq.'t  ') then
+      !  call RTE_bc(ix,iy,iz,ie,ray)
+      !  temp = ray
+      !endif
+      !endif
 
       return
       end
@@ -153,11 +154,25 @@ c      implicit none
 
       include 'SIZE'
       include 'TOTAL'
-	  
+      include "rte/RTE_DATA"
+
       ntot = lx1*ly1*lz1*nelt
 
+      call cfill(vx,sn_x(1,1),ntot)
+      call cfill(vy,sn_y(1,1),ntot)
+      call cfill(vz,sn_z(1,1),ntot)
+
+c      idpss(2) = -1 ! turn off temperature
+      idpss(3) = -1 ! turn off temperature
+      idpss(4) = -1 ! turn off temperature
+      idpss(5) = -1 ! turn off temperature
+      idpss(6) = -1 ! turn off temperature
+      idpss(7) = -1 ! turn off temperature
+      idpss(8) = -1 ! turn off temperature
+      idpss(9) = -1 ! turn off temperature
+
 c solve RTE equation
-      if(istep.gt.0) call RTE_solve()
+c      if(istep.gt.0) call RTE_solve()
 c      if(istep.gt.1) idpss(1) = -1 ! turn off temperature
 
       do i = 1,ldimt-1
@@ -227,8 +242,6 @@ c copy periodic bc to passive scalars
 
 c setuo for RTE solver
       call RTE_setup()
-
-
 
       return
       end

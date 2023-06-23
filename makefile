@@ -1,15 +1,15 @@
-### makefile automatically created by makenek 06/11/2023 16:01:56 ###
+### makefile automatically created by makenek 06/13/2023 09:19:53 ###
 BINNAME=nek5000
 CASENAME:=2d_rte
 CASEDIR:=/home/yuanhaom/scr/RTE/RTE_NEK
-S:=/home/yuanhaom/Nek5000_12072022/Nek5000
+S:=/home/yuanhaom/Nek5000_06122023/Nek5000
 OPT_INCDIR=./ 
 OBJDIR=$(CASEDIR)/obj
 LIB=$(OBJDIR)/libnek5000.a
 
 LD=mpif77
 FC=mpif77
-CC=mpicc
+CC=mpicc -std=c99
 FFLAGS+=-cpp -fdefault-real-8 -fdefault-double-8 -w -std=legacy 
 CFLAGS+=
 LDFLAGS+= -Wl,--allow-multiple-definition
@@ -37,7 +37,7 @@ PPS_C = $(patsubst %,-D%,$(PPS))
 
 # CORE##########################################################################
 CORE = drive1.o drive2.o \
-plan5.o \
+plan5.o nekio.o \
 plan4.o bdry.o coef.o conduct.o connect1.o connect2.o \
 dssum.o eigsolv.o gauss.o genxyz.o navier1.o makeq.o \
 navier0.o navier2.o navier3.o navier4.o prepost.o speclib.o \
@@ -229,6 +229,7 @@ $(OBJDIR)/crs_amg.o          :$S/core/crs_amg.c;           $(CC) -c $(cFL2) $(GS
 $(OBJDIR)/fem_amg_preco.o    :$S/core/experimental/fem_amg_preco.c; $(CC) -c $(cFL2) $(GSLIB_IFLAGS) $(HYPRE_IFLAGS) $< -o $@
 $(OBJDIR)/crs_hypre.o        :$S/core/experimental/crs_hypre.c; $(CC) -c $(cFL2) $(GSLIB_IFLAGS) $(HYPRE_IFLAGS) $< -o $@
 $(OBJDIR)/partitioner.o      :$S/core/partitioner.c;       $(CC) -c $(cFL2) $(GSLIB_IFLAGS) $(PARRSB_IFLAGS) $< -o $@
+$(OBJDIR)/nekio.o          :$S/core/nekio.c;           $(CC) -c $(cFL2) $(GSLIB_IFLAGS) $< -o $@
 
 # 3rd party #######################################################################################
 $(OBJDIR)/visit.o        :$S/core/3rd_party/visit.f;	     $(FC) -c $(VISIT_IFLAGS) $(FL2) $< -o $@
