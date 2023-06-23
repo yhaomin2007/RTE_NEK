@@ -150,7 +150,7 @@ c solve RTE euqation for this angle.
 c      call copy(u_exact,t(1,1,1,1,ipscalar),n) ! referenced sol from restart file
 
       call cfill(ha,sigma_d,n) ! TODO uservp
-      call cfill(hb,sigma_t,n) 
+      call cfill(hb,sigma_t*sa_a(iphi,itheta),n) 
       call cfill(hc,1.0,n) 
 	  
       call cfill(snxf,sn_x(iphi,itheta),n)
