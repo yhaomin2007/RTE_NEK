@@ -15,7 +15,7 @@
      & Ir(lx1,ly1,lz1,lelt,4*nphi,ntheta), 
      & Ir_src(lx1,ly1,lz1,lelt,4*nphi,ntheta), 
      & Ir_ibc(lx1,ly1,lz1,lelt),
-     & Qr(lx1,ly1,lz1,lelt),
+     & Qr(3,lx1,ly1,lz1,lelt),
      & snfnx(lx1,ly1,lz1,lelt),      
      & snfny(lx1,ly1,lz1,lelt),     
      & snfnz(lx1,ly1,lz1,lelt),

@@ -50,7 +50,6 @@ c
   
       if(nid.eq.0) write(6,*) 'solving RTEs, iter_outer: ',iter_outer
 
-
 c calculate incident radiation flux on boundaries
 	  call RTE_incident_radiation_flux_on_bc()
 c calculate source term (rhs) of RTE
@@ -213,7 +212,10 @@ c      call my_proj (u_sol,rhs,wt,iter,tol,.true.)
 
       ifield = ifield_bak
 
-	  
+
+c calculate Qr (radiative heat flux)
+      call RTE_Qr()
+	 
       return
       end
 c--------------------------------------------------------------------
@@ -584,6 +586,53 @@ c     & + sigma_t*sigma_b*t(i,1,1,1,1)**4.0/sn_pi
 
         endif
 
+
+      return
+      end
+c--------------------------------------------------------------------
+      subroutine RTE_Qr()
+c calculate radiative heat flux 
+c
+c      implicit none
+      include 'SIZE'
+      include 'TOTAL'
+      include "rte/RTE_DATA"
+
+
+      ntot = lx1*ly1*lz1*nelt
+      call rzero(Qr,3*ntot)
+
+       if (ldim.eq.2) then
+
+          do iphi = 1,nphi*4          
+           ipscalar = 1+iphi
+           do i = 1,ntot
+      Qr(1,i,1,1,1) = Qr(1,i,1,1,1) 
+     & + t(i,1,1,1,ipscalar)*sn_x(iphi,1)*sa_a(iphi,1)
+      Qr(2,i,1,1,1) = Qr(2,i,1,1,1) 
+     & + t(i,1,1,1,ipscalar)*sn_y(iphi,1)*sa_a(iphi,1)
+           enddo         
+          enddo
+
+        else
+
+          do itheta = 1,ntheta
+          do iphi = 1,nphi*4
+          ipscalar = 1+iphi+(itheta-1)*(nphi*4)
+
+           do i = 1,ntot
+      Qr(1,i,1,1,1) = Qr(1,i,1,1,1) 
+     & + t(i,1,1,1,ipscalar)*sn_x(iphi,itheta)*sa_a(iphi,itheta)
+      Qr(2,i,1,1,1) = Qr(2,i,1,1,1) 
+     & + t(i,1,1,1,ipscalar)*sn_y(iphi,itheta)*sa_a(iphi,itheta)
+      Qr(3,i,1,1,1) = Qr(3,i,1,1,1) 
+     & + t(i,1,1,1,ipscalar)*sn_z(iphi,itheta)*sa_a(iphi,itheta)
+           enddo           
+
+          enddo
+          enddo
+
+        endif
 
       return
       end
